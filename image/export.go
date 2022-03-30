@@ -4,7 +4,6 @@ import (
 	"context"
 	"io/ioutil"
 	"net/http"
-	"strings"
 
 	"github.com/cpuguy83/go-docker/httputil"
 	"github.com/cpuguy83/go-docker/version"
@@ -27,7 +26,9 @@ func (s *Service) ExportBundle(ctx context.Context, opts ...ExportBundleOption) 
 
 	withExportBundleConfig := func(req *http.Request) error {
 		q := req.URL.Query()
-		q.Add("names", strings.Join(cfg.Names, ","))
+		for _, name := range cfg.Names {
+			q.Add("names", name)
+		}
 		req.URL.RawQuery = q.Encode()
 		return nil
 	}

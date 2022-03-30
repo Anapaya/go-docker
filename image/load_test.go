@@ -23,7 +23,7 @@ func TestLoad(t *testing.T) {
 	assert.NilError(t, err, "expected pulling hello-world to succeed")
 
 	bundle, err := s.ExportBundle(ctx, func(config *image.ExportBundleConfig) {
-		config.Names = []string{"hello-world:latest"}
+		config.Names = []string{"hello-world:latest", "hello-world:latest"}
 	})
 	assert.NilError(t, err, "expected exporting hello-world to succeed")
 
