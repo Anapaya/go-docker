@@ -16,6 +16,7 @@ type CreateConfig struct {
 	Repo      string
 	Tag       string
 	Platform  string
+	Changes   string
 }
 
 // CreateOption is used as functional arguments to create images.
@@ -35,6 +36,7 @@ func (s *Service) Create(ctx context.Context, opts ...CreateOption) error {
 		q.Add("repo", cfg.Repo)
 		q.Add("tag", cfg.Tag)
 		q.Add("platform", cfg.Platform)
+		q.Add("changes", cfg.Changes)
 		req.URL.RawQuery = q.Encode()
 		return nil
 	}
